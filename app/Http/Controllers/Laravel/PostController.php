@@ -11,8 +11,7 @@ class PostController extends Controller
             'name'=> 'required|max=4',
             'email' =>'required'
         ]);
-
-        Post ::create(request(['name','email']));
+        Post::create(request(['name','email']));
         return redirect('/');
     }  
 }

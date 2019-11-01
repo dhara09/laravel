@@ -13,15 +13,15 @@ use DB;
 
 class LoginController extends Controller
 {
-    private $_MyModel;
+    private $MyModel;
 
     function __construct(){
-      $this->setMyModel();
+        $this->setMyModel();
     }
 
     public function setMyModel(){
-      $local = new MyModel();
-      $this->_MyModel = $local; 
+        $local = new MyModel();
+        $this->_MyModel =$local;
     }
 
     public function create(){

@@ -27,8 +27,8 @@ class RegisterViewController extends Controller
     }
 
     public function show(){
-        $register = DB::table('registration')->select('id','name','email','gender','contact')->latest()->get();
-        return view('RegisterView.fetch')->with('regis',$register);
+        $register = DB::table('registration')->select('id','name','email','gender','contact','payment_title','payment_status')->latest()->get();
+        return view('RegisterView.fetch',compact('register'));
     }
 
     public function edit($id){
@@ -64,6 +64,28 @@ class RegisterViewController extends Controller
         //
     }
     public function apilogin(){
-//
+        //
     }
+    public function ExportReport()
+    {
+        $getData=$this->_MyModel->getExportData();
+        $csvGeneratedData="Id, Name, Email ,Gender ,Contact ,Password,Payment_Title,Payment_Status \n";
+        foreach($getData as $id => $data){
+            $csvGeneratedData  .= $data->id.',';
+            $csvGeneratedData  .= $data->name.',';
+            $csvGeneratedData  .= $data->email.',';
+            $csvGeneratedData  .= $data->gender.',';
+            $csvGeneratedData  .= $data->contact.',';
+            $csvGeneratedData  .= $data->password.',';
+            $csvGeneratedData  .= ($data->payment_title == 'cod' ? 'Cash-On_Delivery' : 'Online-Payment').',';
+            $csvGeneratedData  .= $data->payment_status."\n";
+        } 
+        $fileName = 'register-export-report.csv';
+        return response ($csvGeneratedData)
+                ->header('Content-Type','application/csv')
+                ->header('Content-Disposition','attachment;filename='.$fileName)
+                ->header('Pragma','no-cache')
+                ->header('Expires','0');
+    } 
 }
+?>

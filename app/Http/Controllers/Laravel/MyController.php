@@ -14,3 +14,4 @@ class MyController extends Controller
     }
     
 }
+?>

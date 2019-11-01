@@ -6,9 +6,6 @@ use Illuminate\Console\Command;
 
 class fetchPlaylist extends Command
 {
-    
-   /* $getKey=YOUTUBE_API_KEY;*/
-
     /**
      * The name and signature of the console command.
      *

@@ -30,9 +30,15 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($regis as $value)
+        @foreach($register as $value)
         <tr>
-            <td>{{ $value->id }}</td>
+            <td>
+                @if( $value->payment_status == 2)
+                <span class ="fa fa-credit-card"></span> {{ $value->id }}
+                @else
+                {{ $value->id }}
+                @endif
+            </td>  
             <td>{{ $value->name }}</td>
             <td>{{ $value->email }}</td>
             <td>{{ $value->contact }}</td>
@@ -49,5 +55,7 @@
     <div class="form-group">
         <button type="button" class="viewbtn" onclick=window.location='http://local.demo.com'>Back</a>
     </div>
+
+    <button type="button" onclick=window.location='http://local.demo.com/registerview/export'>Export</button>
 </div>
 </form>

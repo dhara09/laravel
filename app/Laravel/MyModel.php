@@ -45,4 +45,9 @@ class MyModel extends Model
         $getData= DB::table('registration')->select('payment_status','payment_title')->get()->toArray();
         return $getData;
     }
+
+    public function getExportData(){
+        $exportData = DB::table('registration')->select('*')->get()->toArray();
+        return $exportData;
+    }
 }
